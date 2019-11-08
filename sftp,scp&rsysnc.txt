@@ -1,0 +1,58 @@
+
+
+
+############## SFTP #####################
+
+
+  SFTP, which stands for SSH File Transfer Protocol, or Secure File Transfer Protocol, is a separate protocol packaged 
+  with SSH that works in a similar way over a secure connection. The advantage is the ability to leverage a secure 
+  connection to transfer files and traverse the filesystem on both the local and remote system.
+  
+  
+sftp kritesh@192.168.72.77
+
+sftp>
+
+      OR
+
+sftp -oPort=2289 kritesh@192.168.72.77
+
+
+#####On differnt port#########
+
+
+Get = download
+
+Put = upload
+
+
+
+############## 	SCP ##################
+
+
+  scp (secure copy) command in Linux system is used to copy file(s) between servers in a secure way. The SCP command or 
+  secure copy allows secure transferring of files in between the local host and the remote host or between two remote hosts. 
+  It uses the same authentication and security as it is used in the Secure Shell (SSH) protocol. SCP is known for its simplicity,
+  security and pre-installed availability.
+  
+  -r = Recusively
+  
+  -P = differntPort
+  
+  scp filename kritesh@192.168.72.77:/home/kritesh
+  
+  scp -r -P filename kritesh@192.168.72.77:/home/kritesh
+  
+  
+  
+############ RSYNC ###################
+
+ Rsync (Remote Sync) is a most commonly used command for copying and synchronizing files and directories remotely as well
+ as locally in Linux/Unix systems. With the help of rsync command you can copy and synchronize your data remotely and locally
+ across directories, across disks and networks, perform data backups and mirroring between two Linux machines..
+ 
+ 
+ rsync kritesh@192.168.72.77:/home/kritesh
+  
+  
+ rsync -arvz 'ssh -p 2289' filename kritesh@192.168.72.77:/home/kritesh 

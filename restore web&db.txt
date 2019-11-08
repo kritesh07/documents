@@ -1,0 +1,116 @@
+
+
+
+######Restore webfiles and database#############
+
+
+
+###restore web data and database data on one server to another server.
+
+
+server 1
+192.168.72.76	dev.mit.com
+
+server 2
+192.168.72.77	prod.mit.com
+
+
+######we are going to  restore the data from dev to prod
+
+DATABASE.....
+
+#####first we need to backup of database by using below command:
+
+
+mysqldump -u root -p devdb > devdb.sql
+
+
+####then we need to compress the file 
+
+gzip devdb.sql
+
+
+WEB.....
+
+cd /var/www/html
+
+
+####compress the web data using tar.......
+
+
+tar cvf dev.com.tar.gz dev.com
+
+#####then both files database and web move on live using scp OR sftp OR rsync.........!!!!!!
+
+
+scp devdb.sql.gz kritesh@192.168.72.75:/home/kritesh@192
+
+scp dev.com.tar.gz kritesh@192.168.72.75:/home/kritesh
+
+
+#####first thing to do on live server is uncompress the files#########
+
+
+cd /home/kritesh
+
+tar xvf dev.com.tar.gz
+
+gzip -d devdb.sql.gz
+
+#####now login to mysql and delete live database and create new databases as per old database_name########
+
+
+mysql -u root -p
+
+mysql> drop databases proddb;
+
+mysql> create database proddb;
+
+
+#####now you can move the devdb in to proddb############
+
+mysql -u root -p proddb < devdb.sql
+
+######and move web data in documentroot#########
+
+
+mv dev.com /var/www/html
+
+cd /var/www/html
+
+########create backup file of your old directory#########
+
+mv prod.com prod.com.bkp 
+
+
+####and rename dev.com to prod.com
+
+mv dev.com prod.com
+
+#########give permission and ownership##########
+
+
+#####if you using wordpress the you have to change databases and user name in wp-config.php.....!!!!!!
+
+vi wp-config.php
+
+define('DB_NAME', 'proddb');
+
+/** MySQL database username */
+define('DB_USER', 'produser');
+
+/** MySQL database password */
+define('DB_PASSWORD', 'temp');
+
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
+
+systemctl restart apache/nginx
+
+
+
+
+
+
+
+

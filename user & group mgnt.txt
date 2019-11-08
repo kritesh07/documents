@@ -1,0 +1,269 @@
+
+
+
+######################Linux User Management################################
+
+ User management includes everything from creating a user to deleting a user on your system. 
+ User management can be done in three ways on a Linux system.
+ 
+ 1.useradd - With useradd commands you can add a user.
+ 
+ Syntax: useradd -m -d /home/<userName> -c "<userName>" <userName>
+ 
+ Example: useradd -m -d /home/kittu kittu
+ 
+ File /etc/default/useradd contains some user default options. The command useradd -D can be used to display this file.
+ 
+ useradd -D
+ 
+ GROUP=100
+ HOME=/home
+ INACTIVE=-1
+ EXPIRE=
+ SHELL=/bin/sh
+ SKEL=/etc/skel
+ CREATE_MAIL_SPOOL=no
+ 
+ 
+ 2.userdel - To delete a user account userdel command is used.
+ 
+ Syntax: userdel -r <userName>
+ 
+ Example: userdel -r xyz 
+ 
+ 
+ 3.usermod - The command usermod is used to modify the properties of an existing user.
+ 
+ Syntax: usermod -c <'newName'> <oldName>  
+ 
+ Example: usermod -c 'kritesh' kittu
+ 
+ #######Deleting Home Directories..........!!!!!!!!
+ 
+ 
+ By using userdel -r option, you can delete home directory along with user account.
+ 
+ Syntax: userdel -r <userName> 
+ 
+ Example: userdel -r kittu
+ 
+ 
+ ##########Login Shell###################
+ 
+ The /etc/passwd file also tells about the login shell for the user.
+ 
+ tail -10 /etc/passwd
+ 
+ Syntax: usermod -s <newShell> <userName>
+ 
+ Example: usermod -s /bin/bash kittu
+ 
+ 
+ 
+ ########Linux/Unix user management commands############
+ 
+ Command                                                                           Description
+
+ sudo adduser username                                                             Adds a user
+ 
+
+ sudo passwd -l 'username'                                                         Disable a user
+
+
+ sudo userdel -r 'username'                                                        Delete a user
+
+
+ sudo usermod -a -G GROUPNAME USERNAME                                             Add user a to a usergroup
+
+
+ sudo deluser USER GROUPNAME                                                       Remove user from a user group
+
+
+ finger                                                                       Gives information on all logged in user
+
+finger username                                                               Gives information of a particular user
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+#################Linux Group Management################################
+
+ Users can be listed in different groups. Group allow us to set permission on the group level instead of setting the permission 
+ on individual level.
+
+ 1.groupadd - The groupadd command creates or add a group in our system.
+ 
+ Syntax:  groupadd <groupName> 
+ 
+ Example: groupadd php
+ 
+ ##########Group File.......!!!!!!!!!
+ 
+ The /etc/group file defines the group membership. A user can be a member of more than one group.
+ 
+ Syntax: /etc/group  
+ 
+ ###########Groups################
+
+ The group command tells about the group where current user belongs to.
+
+ Syntax: groups
+
+ 
+ 2.usermod - The group members can be edited with usermod or useradd command. If a group is not listed then by default, 
+             usermod command will remove the user from every group of which he is a member.
+   
+   Syntax: usermod -a -G <group> <userName> 
+   
+   Example: usermod -a -G php kittu
+   
+   
+   
+ 3.groupmod - With the help of groupmod command you can change the name of an already existing group.
+
+  Syntax: groupmod -n <oldGroup> <newGroup> 
+  
+  Example: groupmod -n php java
+  
+  
+
+ 4.gruopdel - The command groupdel will delete a group permanently from the system.
+
+  Syntax: groupdel <group>
+
+  Example: groupdel  php  
+  
+  
+  
+ 5.gpasswd - Control of group membership can be passed on to another user with gpasswd command.
+
+  Syntax: gpsswd -A <user> <group>
+
+  Example: gpasswd -A kittu php  
+ 
+ 
+ note: File /etc/gshadow keeps the information about the group administrators...
+ 
+ tail -5 /etc/gshadow
+ 
+ 
+ To remove all the administrators from a group, set an empty administrator list.
+ 
+ Syntax: gpasswd -A "" <group>  
+ 
+ Example: gpasswd -A "" java 
+ 
+ 
+ 
+----------------------------------------------------------------------------------------------------------------------------
+
+
+#######################CHANGE OWNERSHIP AND PERMISSIONS ##########################
+
+ ####Ownership of Linux files####
+ 
+ 1.User - A user is the owner of the file. By default, the person who created a file becomes its owner. 
+          Hence, a user is also sometimes called an owner. 
+
+
+
+ 2.Group - A user- group can contain multiple users. All users belonging to a group will have the same access permissions to the file. 
+           Suppose you have a project where a number of people require access to a file. Instead of manually assigning permissions to 
+		   each user, you could add all users to a groupand assign group permission to file such that only this group members and no 
+		   one else can read or modify the files.
+ 
+ 3.Other - Any other user who has access to a file. This person has neither created the file, nor he belongs to a usergroup who could
+           own the file. Practically, it means everybody else. Hence, when you set the permission for others, it is also referred as set 
+		   permissions for the world.
+		   
+		
+
+################PERMISSIONS###########################
+
+
+ 1.Read - This permission give you the authority to open and read a file. Read permission on a directory gives you the ability to lists 
+          its content.
+
+ 2.Write - The write permission gives you the authority to modify the contents of a file. The write permission on a directory gives you
+           the authority to add, remove and rename files stored in the directory.
+
+ 
+ 3.Execute - In Windows, an executable program usually has an extension ".exe" and which you can easily run. In Unix/Linux, you cannot run 
+             a program unless the execute permission is set. If the execute permission is not set, you might still be able to see/modify 
+			 the program code(provided read & write permissions are set), but not run it.
+			 
+			 
+			 
+ NOTE: r = read permission
+       w = write permission 
+       x = execute permission
+       - = no permission   
+	   
+	   
+	   
+#########Absolute(Numeric) Mode###############
+
+
+ Number	                        Permission Type	                                 Symbol
+ 
+  0	                             No Permission	                                   ---
+
+  1	                              Execute	                                       --x
+
+  2	                               Write	                                       -w-
+
+  3	                             Execute + Write	                               -wx
+
+  4	                               Read	                                           r--
+
+  5	                             Read + Execute	                                   r-x
+
+  6	                             Read +Write	                                   rw-
+
+  7	                           Read + Write +Execute	                           rwx
+  
+  
+  
+  
+  #############Changing Ownership and Group#########################################
+  
+  
+  chown www-data:git kittu
+  
+  chown www-data:www-data kittu
+  
+  
+  In case you want to change group-owner only, use the command.....
+  
+  
+  chgrp group_name filename
+  
+  example current : chgrp root root test1
+  
+  after chnage : chgrp root test1
+  
+  
+  
+  chmod 775 filename or directory
+  
+  
+  example : chmod 775 kittu
+  
+  
+  
+ 	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+ 		   
+		   
+ 
+ 
+ 
+ 

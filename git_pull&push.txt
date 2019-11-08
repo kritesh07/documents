@@ -1,0 +1,204 @@
+
+
+
+################GIT CLONING#################
+
+ Git is the tool / software / program that is used to keep track of your project files. 
+ it is the “version control” system, where the word “version” here refers to the changes 
+ or revisions that you make to your project over time.
+ 
+ 
+ GitHub, at its core, is simply a website designed to host projects that are being tracked using Git. Since it’s just a 
+ “hosting service,” it’s not the only website that does this — other websites can host Git projects, such as Bitbucket, 
+  though GitHub is arguably the most popular. GitHub adds on a lot of tools and views of your project that go along with 
+  version control and aid with collaborating with other people on your project.
+
+
+####If you dont have github account then first you have to create it on github.com after that you will have username and email.....
+
+
+
+#####Download and install Git for Linux#########
+
+apt-get install git
+
+
+#######Configuring GitHub#########
+
+
+set up the configuration details of the GitHub user.
+
+git config --global user.name "kritesh07"
+
+git config --global user.email "kritesh21@gmail.com"
+
+
+######Creating a local repository########
+
+
+#####Create a folder on your system anywhere. This will pushed onto the GitHub website########
+
+mkdir admin
+
+git init admin
+
+
+cd admin
+
+
+#####Adding repository files to an index############
+
+
+######This is an important step. Here we add all the files that need to be pushed onto the website.
+      These filesmight be the text file, programs, script or any document that you might add for the 
+	  firsttime into the repository.....
+	  
+
+#####so, now create file for testing.....!!!!
+
+vi admin.sh
+
+
+vi sittu.sh
+
+
+now we have 2 files....
+
+admin.sh and sittu.sh
+
+
+#######add it to the index by using the following 2 commands#####
+
+
+	git add admin.sh
+
+    git add sittu.sh	
+	
+########Committing changes made to the index###############
+
+####A commit is a record of what files you have changed since the last time you made a commit.
+    Essentially, you make changes to your repo (for example, adding a file or modifying one) and
+    then tell git to put those files into a commit.
+	
+	
+git commit -m "this is for testing"
+
+
+#####Creating a repository on GitHub##########
+
+ Create a repository on GitHub. Notice that the name of the repository should be the same as the
+ repository's on the local system.
+ 
+ Once this is created, we can push the contents of the local repository onto the GitHub repository..
+ 
+ In this case, it will be "admin". To do this login to your account on https://github.com.
+ Then click on the "plus(+)" symbol at the top right corner of the page and select
+ "create new repository". Fill the details as shown in the image below and click on
+ "create repository" button.
+ 
+ 
+ 
+ Make sure you replace 'user_name' and 'admin' in the path with your Github username and folder before running the command.
+ 
+ 
+ git remote add origin https://github.com/kritesh07/admin.git
+ 
+########Pushing files in local repository to GitHub repository######
+
+
+ git push origin master
+ 
+######Enter the login credentials [user_name and password].##########
+
+ vi admin.sh
+ 
+ vi sittu.sh
+ 
+ git add admin.sh
+ 
+ git add sittu.sh
+ 
+ git commit -m "this is for testing"
+ 
+ git remote add origin https://github.com/kritesh07/admin.git
+ 
+ git push origin master
+ 
+ 
+ 
+#######Cloning  Repository################ 
+
+  When you create a repository on GitHub, it exists as a remote repository. 
+  You can clone your repository to create a local copy on anu computer and sync between the two locations.
+  
+  Cloning a repository syncs it to your any local machine. After you clone, you can add and edit files and 
+  then push and pull updates.
+  
+  
+ #####first you have to add your ssh public key in github###########
+ 
+ ssh-keygen -t rsa
+ 
+ cd .ssh
+
+ cat id_rsa.pub
+ 
+ 
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhg7v2DrPSQlhCYwWtsGTEWRRw0na1ojTC3BzbiWbV7AlMY0dfbr3g6bM65jNeOBplD
+  fEJIldXuVfSyoUY3kVJ8Cfa+LC77tDO5HEf2BhFNIzGVrghZahJWU+AAKX0kCpl/MxduDLVtO2kT9HO6xiwiWPvUBZm284PQyBfkwx2NQ
+  I4nATTewNgGH9P6q9F3gXt8/M4ksIEU7GHI/9vCjCkyoX595hdyRT6JwA0SEsYM4ua5IPwIVL3YXzMmbR4FaMERhGP1aMAtRW/SR5nk4j
+  73u4TuG5MtXzD6G27rPZgTebfpbKpn+7C8L6oe0jFkjfWUQhPgT3hYyLznh5Xwv2V root@kritesh
+  
+  
+ copy the public key and add in github, for add you have to click on setting and SSH and GPG keys then new ssh key and paste the key
+ 
+ after that you can proced the next step.
+ 
+ make directory where you want to create clone.
+ 
+ 
+ mkdir hello
+ 
+ cd hello
+ 
+ git clone https://github.com/kritesh07/admin.git
+ 
+ 
+ ######if you want create some programs or scrips then you have to just create program########
+ 
+ 
+ vi kittu.txt
+ 
+ for add this file in repo type belows command
+ 
+ git add kittu.txt
+ 
+ git push
+ 
+ 
+ 
+ 
+
+  
+  
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+	
+
+	
+	
+	
+	  
+
+
+
+
+ 

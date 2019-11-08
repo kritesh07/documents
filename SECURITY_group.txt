@@ -1,0 +1,25 @@
+
+
+
+##############SECURITY GROUP###############
+
+ 1.A security group is a virtual firewall which is controlling the traffic to your EC2 instances.
+  
+ 2.When you first launch an EC2 instance, you can associate it with one or more security groups.
+ 
+ 3.A Security group is the first defence against hackers.
+ 
+ 
+ 
+##########Some important points to remember:################
+
+ 1.All inbound traffic is blocked by Default, i.e., you need to add the traffic such as HTTP, HTTPs, etc.
+ 
+ 2.All outbound traffic is allowed automatically.
+ 
+ 3.You can have any number of EC2 instances within a security group.
+ 
+ 4.You can have multiple security groups attached to EC2 instance./li>
+ 
+ 5.Security groups are stateful, i.e., if you create an inbound rule allowing traffic in, that traffic is automatically allowed back out again.
+ 
