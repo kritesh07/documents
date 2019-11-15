@@ -1,0 +1,10 @@
+
+0 4  * * * /etc/som/cleanlogs.sh
+
+#!/bin/bash
+date1=`date +%y%m%d_%H%M%S`
+tar zcvf /var/www/html/bqapi.prioticket.com/application/storage/logs_$date1.tar.gz /var/www/html/bqapi.prioticket.com/application/storage/logs/
+chown -Rf www-data:git /var/www/html/bqapi.prioticket.com/application/storage/logs_$date1.tar.gz
+chmod -Rf 777 /var/www/html/bqapi.prioticket.com/application/storage/logs_$date1.tar.gz
+rm -rf /var/www/html/bqapi.prioticket.com/application/storage/logs/*
+chmod -Rf 777 /var/www/html/bqapi.prioticket.com/application/storage/logs/
