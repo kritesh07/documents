@@ -1,0 +1,16 @@
+			Lazarus Clear Cache
+  1.First we have clear cache in cloud flare
+  
+  2. In AWS account open in cloudfront steps:
+  
+	 a) open cloudfront
+	 b) double click on comment and check live (1.LIVE CDN,2.LIVE-UPLOADS,3.LIVE-Uploads-DISCOUNT,4.LIVE-upload-forms-WHOLESALE)
+	 c) open any one by one via ID (Like ENVV9XODK38DP) 
+	 d) select Invalidations 
+	 e) Create Invalidations
+	 f) paste /* in object paths in every (1.LIVE CDN,2.LIVE-UPLOADS,3.LIVE-Uploads-DISCOUNT,4.LIVE-upload-forms-WHOLESALE)
+		
+  3. In open SSH of Laz redis server the type following commands
+      # redis-cli
+	  # flushdb
+	  # flushall

@@ -1,0 +1,42 @@
+open site https://scm.keystrokesinc.net
+
+select project SomLimbu / LAZARUSNATURALS
+
+project Select 
+>Activity
+
+check the any dev's pushed code if pushed then 
+
+
+Go to setting select 
+
+>Repository
+>Protected Branches   >> click on "Expand"        
+
+>Protected branch 
+
+
+check "Allowed to merge" and "Allowed to push"  both this is always "Maintainers"
+
+when pushed any codes then 
+
+change Maintainers to >> Developers + Maintainers (both of options)
+
+then check in master node 
+
+
+
+log in via ssh ( master webserver )
+
+then
+
+# sudo su
+
+# su - www-data
+
+# cd /var/www/html/lazarusnaturals.com/
+
+# git status 
+
+# git pull
+

@@ -1,0 +1,31 @@
+	change directory to latest backup location
+	
+	cd /data/backups/db_backups/latestbackup date
+	
+	for RDS located in SDB01 /backups/backups/rds_db_backups/
+
+	then copy the latest database backup with scp or sftp
+	for copy database primery to shadow web
+	
+	shadow web: 
+	user: support
+
+
+	sftp -oPort=2289 support@172.30.2.14
+	password: yOdQ8ClqH0UJDBHJaoZDN9hDs
+	put priopass.sql.gz
+
+	then check to open link 
+	https://dwnlds.prioticket.com/
+	user: bajrangbali
+	pass: tajmahal123#
+
+priopassdb_pri_17dec.sql.gz
+
+
+
+
+priopassdb_sec_17dec.sql.gz
+
+
+
