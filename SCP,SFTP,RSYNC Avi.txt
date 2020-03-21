@@ -1,0 +1,110 @@
+
+SCP Command SFTP in Linux with Examples
+	
+ 
+  SCP (secure copy) command in Linux system is used to copy file(s) between servers in a secure way
+    
+        
+		          Commands
+        
+* To specify a specific port to use with SCP^!
+ 
+      root@avi:/home/avi#  scp -P 2289 data.txt avi@192.168.72.66
+ 
+      
+*  If you want the detailed information of the SCP process, then -v parameter helps you out^!
+
+   root@avi:/home/avi# scp -v -P 2289 data.txt avi@192.168.72.66	
+ 
+
+
+                        
+                         SFTP In Linux  Commands
+						
+		
+            SSH protocol is used to authenticate and establish a SFTP connection
+		command :Execute 'command' in local shell
+
+           root@avi:/home/avi# sftp avi@192.168.72.69
+
+avi@192.168.72.69's password:******
+
+Connected to avi@192.168.72.69.
+
+sftp>
+
+sftp>   ?            type '?' or 'help' for the  the available commands for 'sftp'
+     
+      sftp>  lpwd      to check Local Present Working Directory
+   
+      sftp>  pwd       to check Remote Present Working Directory      
+			
+	sftp>   put        upload File Through SFTP On Remote Server		 
+	
+      sftp>   get        Download File From Remote Server		    
+      
+				     
+ 		   
+	                                                           Rsync (Remote Sync) 
+
+					
+* Copy/Sync Files and Directory Locally 
+               
+                   root@avi:/home/avi# rsync -zvh min.txt   /var/www/  
+   
+                                                              rsync -avhz ping/ /var/www/html/  >>Directory<<
+				
+	   rsync -avz 01.txt  avi@192.168.72.69:/home/avi/ >>Copy/Sync Files From a Server<<
+				
+  rsync -avhz techdir avi@192.168.72.69:/home/avi  >>copy Directory from local to Server<<
+				
+				#   rsync -avz dir root@192.168.72.69:/home/avi/ >> sync directory from server to host<<
+                     
+                    ** SSH PasswordLess Login **
+					
+			>> we have 2 Nodes 1->  192.168.72.68 server1 / 2-> 192.168.72.67 server2<<
+					
+			       server1  # ssh-keygen -t rsa
+               
+     			   >>press enter <<
+
+              >> the key saved in this path(/home/server1/.ssh/id_rsa)<<
+               
+          # cat /home/server1/.ssh/id_rsa  >>you have to copy keys whis is stored in this file<<
+    
+      
+	  Access the secend nopde through ssh and follow the steps which are mentioned below
+					   
+                    # ssh server2@192.168.72.67					   
+                    # password-> xxxxxxxx 
+		            
+                    # mkdir .ssh
+					
+				    # cd .ssh
+					
+                    # vi authorized_keys	>>Paste ssh key of server1 in this file<<
+         
+		            # chmod -Rf 700 authorized_keys 
+					
+					 
+                *Now Logout From Server2 And Log in Thruogh ssh again From server1*
+				
+				   >>Note It will ask Passwd on First Attempt<<
+				   
+				  # ssh server2@192.168.72.67
+				  
+				  Now it wont ask You For password
+ 
+                  				  
+
+
+
+
+
+
+				
+
+		  
+              
+
+			
